@@ -1,0 +1,95 @@
+//C++
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+
+        int low=0;
+        int high=nums.size()-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+
+            //left side sorted
+            if(nums[low]<nums[mid]){
+                if(nums[low]<=target&& nums[mid]>=target){
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+
+            }else if(nums[high]>nums[mid]){
+                if(nums[high]>=target&& nums[mid]<=target){
+                    low=mid+1;
+                }else{
+                    high=mid-1;
+                }
+            }else if(nums[high]==nums[mid]){
+                for(int i=mid;i<high;i++){
+                    if(nums[i]==target){
+                        return true;
+                    }
+                }
+                high=mid-1;
+            }else{
+                for(int i=low;i<mid;i++){
+                    if(nums[i]==target){
+                        return true;
+                    }
+                }
+                low=mid+1;
+            }
+        }
+        return false;
+        
+    }
+};
+
+
+//JAVA
+
+class Solution {
+    public boolean search(int[] nums, int target) {
+        int low=0;
+        int high=nums.length-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+
+            //left side sorted
+            if(nums[low]<nums[mid]){
+                if(nums[low]<=target&& nums[mid]>=target){
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+
+            }else if(nums[high]>nums[mid]){
+                if(nums[high]>=target&& nums[mid]<=target){
+                    low=mid+1;
+                }else{
+                    high=mid-1;
+                }
+            }else if(nums[high]==nums[mid]){
+                for(int i=mid;i<high;i++){
+                    if(nums[i]==target){
+                        return true;
+                    }
+                }
+                high=mid-1;
+            }else{
+                for(int i=low;i<mid;i++){
+                    if(nums[i]==target){
+                        return true;
+                    }
+                }
+                low=mid+1;
+            }
+        }
+        return false;
+        
+    }
+}
